@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💕 Will You Be My Valentine? 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&family=Dancing+Script:wght@700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,15 +14,15 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: background 0.5s ease;
         }
 
-        .hearts-container {
+        .particles-container {
             position: fixed;
             width: 100%;
             height: 100%;
@@ -30,16 +31,15 @@
             z-index: 0;
         }
 
-        .floating-heart {
+        .floating-element {
             position: absolute;
-            font-size: 24px;
             animation: float-up 6s ease-in infinite;
             opacity: 0.7;
         }
 
         @keyframes float-up {
             0% {
-                transform: translateY(100vh) rotate(0deg);
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
                 opacity: 0;
             }
             10% {
@@ -49,8 +49,17 @@
                 opacity: 0.7;
             }
             100% {
-                transform: translateY(-100px) rotate(720deg);
+                transform: translateY(-100px) rotate(720deg) scale(1);
                 opacity: 0;
+            }
+        }
+
+        @keyframes float-side {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(20px);
             }
         }
 
@@ -58,51 +67,116 @@
             background: white;
             border-radius: 30px;
             padding: 50px 60px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             text-align: center;
             z-index: 10;
             position: relative;
-            max-width: 500px;
-            animation: pulse-glow 2s ease-in-out infinite;
+            max-width: 520px;
+            margin: 20px;
         }
 
-        @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 0 20px 60px rgba(255, 105, 135, 0.3);
-            }
-            50% {
-                box-shadow: 0 20px 80px rgba(255, 105, 135, 0.5);
-            }
+        /* Card style variations */
+        .card.style-classic {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
 
-        .bear {
+        .card.style-neon {
+            border: 3px solid;
+            box-shadow: 0 0 30px, 0 0 60px, inset 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        .card.style-glassmorphism {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .card.style-gradient {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
+            box-shadow: 20px 20px 60px #d1d1d1, -20px -20px 60px #ffffff;
+        }
+
+        .card.style-romantic {
+            background: linear-gradient(to bottom, #fff5f5, #ffffff);
+            border: 2px solid #ffdddd;
+            box-shadow: 0 10px 40px rgba(255, 100, 100, 0.2);
+        }
+
+        .character {
             font-size: 100px;
             margin-bottom: 20px;
             display: inline-block;
+        }
+
+        /* Character animations */
+        .anim-bounce {
             animation: bounce 1s ease-in-out infinite;
         }
 
+        .anim-wiggle {
+            animation: wiggle 0.5s ease-in-out infinite;
+        }
+
+        .anim-pulse {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .anim-swing {
+            animation: swing 1s ease-in-out infinite;
+            transform-origin: top center;
+        }
+
+        .anim-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .anim-heartbeat {
+            animation: heartbeat 1.2s ease-in-out infinite;
+        }
+
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.15); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.15); }
+            70% { transform: scale(1); }
         }
 
         h1 {
-            color: #e84a5f;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .subtitle {
             color: #666;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 40px;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .buttons-container {
@@ -124,17 +198,15 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-family: inherit;
         }
 
         .btn-yes {
-            background: linear-gradient(135deg, #ff6b8a, #ff8e9e);
             color: white;
-            box-shadow: 0 8px 25px rgba(255, 107, 138, 0.4);
         }
 
         .btn-yes:hover {
             transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(255, 107, 138, 0.6);
         }
 
         .btn-no {
@@ -149,6 +221,20 @@
             transform: scale(0.9);
         }
 
+        /* Button style variations */
+        .btn.btn-style-round {
+            border-radius: 50px;
+        }
+
+        .btn.btn-style-square {
+            border-radius: 12px;
+        }
+
+        .btn.btn-style-pill {
+            border-radius: 100px;
+            padding: 18px 60px;
+        }
+
         .success-container {
             display: none;
             text-align: center;
@@ -160,17 +246,9 @@
         }
 
         @keyframes pop-in {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .success-emoji {
@@ -181,17 +259,12 @@
         }
 
         @keyframes spin-heart {
-            0% {
-                transform: rotateY(0deg);
-            }
-            100% {
-                transform: rotateY(360deg);
-            }
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
         }
 
         .success-text {
-            color: #e84a5f;
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 15px;
         }
 
@@ -199,21 +272,6 @@
             color: #666;
             font-size: 1.1rem;
             line-height: 1.8;
-        }
-
-        .confetti {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        .message-counter {
-            margin-top: 20px;
-            color: #999;
-            font-size: 0.9rem;
-            font-style: italic;
         }
 
         .taunt-message {
@@ -224,7 +282,6 @@
             background: rgba(255, 255, 255, 0.95);
             padding: 15px 30px;
             border-radius: 50px;
-            color: #e84a5f;
             font-weight: bold;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             opacity: 0;
@@ -235,16 +292,68 @@
         .taunt-message.show {
             opacity: 1;
         }
+
+        .message-counter {
+            margin-top: 20px;
+            color: #999;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .theme-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 100;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Special effects for some themes */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
-    <div class="hearts-container" id="heartsContainer"></div>
+    <div class="particles-container" id="particlesContainer"></div>
     
-    <div class="card">
+    <div class="theme-badge" id="themeBadge" onclick="location.reload()">
+        🎨 <span id="themeName">Theme</span> — Click to shuffle!
+    </div>
+    
+    <div class="card" id="card">
         <div class="main-content" id="mainContent">
-            <div class="bear">🧸💝</div>
-            <h1>Will You Go On A Date With Me?</h1>
-            <p class="subtitle">I promise to make you smile,<br>bring you flowers, and only tell<br>slightly terrible jokes! 🌹</p>
+            <div class="character" id="character">🧸💝</div>
+            <h1 id="title">Will You Go On A Date With Me?</h1>
+            <p class="subtitle" id="subtitle">I promise to make you smile!</p>
             
             <div class="buttons-container" id="buttonsContainer">
                 <button class="btn btn-yes" id="yesBtn" onclick="sayYes()">Yes! 💕</button>
@@ -255,57 +364,261 @@
         </div>
         
         <div class="success-container" id="successContainer">
-            <div class="success-emoji">💑</div>
-            <h2 class="success-text">YAYYY! You Made My Day! 🎉</h2>
-            <p class="success-subtext">
-                I knew you'd say yes! 😏<br>
-                Can't wait for our date!<br>
-                <span style="font-size: 2rem; margin-top: 10px; display: block;">💐🍫🎬🌙</span>
-            </p>
+            <div class="success-emoji" id="successEmoji">💑</div>
+            <h2 class="success-text" id="successTitle">YAYYY! 🎉</h2>
+            <p class="success-subtext" id="successMessage">Can't wait for our date!</p>
         </div>
     </div>
     
     <div class="taunt-message" id="tauntMessage"></div>
-    
     <canvas class="confetti" id="confetti"></canvas>
 
     <script>
+        // ============ THEME CONFIGURATIONS ============
+        const themes = [
+            {
+                name: "Classic Romance 🌹",
+                background: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)",
+                primaryColor: "#e84a5f",
+                buttonGradient: "linear-gradient(135deg, #ff6b8a, #ff8e9e)",
+                buttonShadow: "0 8px 25px rgba(255, 107, 138, 0.4)",
+                cardStyle: "style-classic",
+                character: "🧸💝",
+                characterAnim: "anim-bounce",
+                particles: ["❤️", "💕", "💖", "💗", "💓", "💘", "💝", "🌹"],
+                font: "'Poppins', sans-serif",
+                titleFont: "'Pacifico', cursive"
+            },
+            {
+                name: "Sunset Love 🌅",
+                background: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+                primaryColor: "#d63384",
+                buttonGradient: "linear-gradient(135deg, #fa709a, #ff9a6c)",
+                buttonShadow: "0 8px 25px rgba(250, 112, 154, 0.5)",
+                cardStyle: "style-glassmorphism",
+                character: "🦊💛",
+                characterAnim: "anim-wiggle",
+                particles: ["🌸", "✨", "💛", "🧡", "💫", "⭐", "🌟"],
+                font: "'Quicksand', sans-serif",
+                titleFont: "'Dancing Script', cursive"
+            },
+            {
+                name: "Ocean Dreams 🌊",
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
+                primaryColor: "#6f42c1",
+                buttonGradient: "linear-gradient(135deg, #667eea, #764ba2)",
+                buttonShadow: "0 8px 25px rgba(102, 126, 234, 0.5)",
+                cardStyle: "style-neon",
+                neonColor: "#a78bfa",
+                character: "🐙💜",
+                characterAnim: "anim-float",
+                particles: ["💜", "🦋", "✨", "🌙", "⭐", "💫", "🔮"],
+                font: "'Poppins', sans-serif",
+                titleFont: "'Pacifico', cursive"
+            },
+            {
+                name: "Cherry Blossom 🌸",
+                background: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ffecd2 100%)",
+                primaryColor: "#ec4899",
+                buttonGradient: "linear-gradient(135deg, #f472b6, #ec4899)",
+                buttonShadow: "0 8px 25px rgba(236, 72, 153, 0.4)",
+                cardStyle: "style-romantic",
+                character: "🐰🌸",
+                characterAnim: "anim-swing",
+                particles: ["🌸", "🌺", "🏵️", "💮", "🌷", "💐", "🎀"],
+                font: "'Quicksand', sans-serif",
+                titleFont: "'Dancing Script', cursive"
+            },
+            {
+                name: "Midnight Magic 🌙",
+                background: "linear-gradient(135deg, #0c0c1e 0%, #1a1a3e 50%, #2d2d5a 100%)",
+                primaryColor: "#f472b6",
+                buttonGradient: "linear-gradient(135deg, #ec4899, #f472b6)",
+                buttonShadow: "0 8px 25px rgba(244, 114, 182, 0.5)",
+                cardStyle: "style-neon",
+                neonColor: "#f472b6",
+                character: "🦉💫",
+                characterAnim: "anim-pulse",
+                particles: ["⭐", "✨", "🌟", "💫", "🌙", "💜", "💖"],
+                font: "'Poppins', sans-serif",
+                titleFont: "'Pacifico', cursive"
+            },
+            {
+                name: "Tropical Love 🌴",
+                background: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
+                primaryColor: "#059669",
+                buttonGradient: "linear-gradient(135deg, #10b981, #34d399)",
+                buttonShadow: "0 8px 25px rgba(16, 185, 129, 0.5)",
+                cardStyle: "style-glassmorphism",
+                character: "🦜💚",
+                characterAnim: "anim-wiggle",
+                particles: ["🌴", "🌺", "🍃", "🌿", "💚", "🦋", "🌻"],
+                font: "'Quicksand', sans-serif",
+                titleFont: "'Dancing Script', cursive"
+            },
+            {
+                name: "Cotton Candy 🍭",
+                background: "linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #d299c2 100%)",
+                primaryColor: "#db2777",
+                buttonGradient: "linear-gradient(135deg, #f9a8d4, #db2777)",
+                buttonShadow: "0 8px 25px rgba(219, 39, 119, 0.4)",
+                cardStyle: "style-gradient",
+                character: "🦄💗",
+                characterAnim: "anim-heartbeat",
+                particles: ["🍭", "🍬", "💗", "💖", "🎀", "⭐", "🌈"],
+                font: "'Quicksand', sans-serif",
+                titleFont: "'Pacifico', cursive"
+            },
+            {
+                name: "Royal Purple 👑",
+                background: "linear-gradient(135deg, #c471f5 0%, #fa71cd 100%)",
+                primaryColor: "#7c3aed",
+                buttonGradient: "linear-gradient(135deg, #8b5cf6, #a78bfa)",
+                buttonShadow: "0 8px 25px rgba(139, 92, 246, 0.5)",
+                cardStyle: "style-classic",
+                character: "🐱👑",
+                characterAnim: "anim-bounce",
+                particles: ["👑", "💎", "💜", "✨", "🦄", "💫", "🔮"],
+                font: "'Poppins', sans-serif",
+                titleFont: "'Dancing Script', cursive"
+            },
+            {
+                name: "Peachy Keen 🍑",
+                background: "linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%)",
+                primaryColor: "#e17055",
+                buttonGradient: "linear-gradient(135deg, #fd79a8, #e84393)",
+                buttonShadow: "0 8px 25px rgba(253, 121, 168, 0.5)",
+                cardStyle: "style-romantic",
+                character: "🐥🍑",
+                characterAnim: "anim-float",
+                particles: ["🍑", "🌼", "🌻", "💛", "🧡", "🌸", "✨"],
+                font: "'Quicksand', sans-serif",
+                titleFont: "'Pacifico', cursive"
+            },
+            {
+                name: "Electric Love ⚡",
+                background: "linear-gradient(135deg, #00d2ff 0%, #3a7bd5 50%, #00d2ff 100%)",
+                primaryColor: "#0ea5e9",
+                buttonGradient: "linear-gradient(135deg, #06b6d4, #0ea5e9)",
+                buttonShadow: "0 8px 25px rgba(14, 165, 233, 0.5)",
+                cardStyle: "style-neon",
+                neonColor: "#06b6d4",
+                character: "🐬💙",
+                characterAnim: "anim-pulse",
+                particles: ["⚡", "💙", "🌊", "💎", "✨", "🦋", "💫"],
+                font: "'Poppins', sans-serif",
+                titleFont: "'Dancing Script', cursive"
+            }
+        ];
+
+        const titles = [
+            "Will You Go On A Date With Me?",
+            "Be My Valentine? 💕",
+            "Will You Be Mine?",
+            "Date Me, Please? 🥺",
+            "You + Me = ❤️?",
+            "Wanna Be My Person?",
+            "Can I Steal Your Heart?",
+            "Be My Forever Valentine?",
+            "Will You Make Me Happy?"
+        ];
+
+        const subtitles = [
+            "I promise to make you smile,<br>bring you flowers, and only tell<br>slightly terrible jokes! 🌹",
+            "I'll let you pick the movie,<br>share my fries, and laugh at<br>all your jokes! 🎬🍟",
+            "Warning: May cause excessive<br>happiness, random giggles, and<br>serious heart flutters! 💓",
+            "Side effects include:<br>butterflies, warm fuzzies,<br>and lots of cuddles! 🦋",
+            "I come with unlimited hugs,<br>bad puns, and a heart<br>that beats just for you! 💝",
+            "Pros: I'm cute and funny<br>Cons: I'll steal all the blankets<br>Worth it? Definitely! 😏",
+            "I promise pizza dates,<br>stargazing nights, and<br>all my love! 🍕⭐",
+            "Just say yes and I'll be<br>the happiest human<br>on this planet! 🌍💖"
+        ];
+
+        const successTitles = [
+            "YAYYY! You Made My Day! 🎉",
+            "I KNEW You'd Say Yes! 😍",
+            "Best Decision Ever! 💕",
+            "You Just Made Me So Happy! 🥰",
+            "This Is The Best Day! 🎊",
+            "My Heart Is Doing Backflips! 💓",
+            "WOOHOO! Let's Go! 🚀💕"
+        ];
+
+        const successMessages = [
+            "Can't wait for our date!<br>Get ready for the best time ever!<br><span style='font-size: 2rem; margin-top: 10px; display: block;'>💐🍫🎬🌙</span>",
+            "I'm already planning<br>the most amazing date!<br><span style='font-size: 2rem; margin-top: 10px; display: block;'>🌹🎡🍝🌟</span>",
+            "You won't regret this!<br>Prepare for adventure!<br><span style='font-size: 2rem; margin-top: 10px; display: block;'>🎢🍦🎪💫</span>",
+            "Get ready for<br>romance overload!<br><span style='font-size: 2rem; margin-top: 10px; display: block;'>💑🌸🎶💖</span>"
+        ];
+
+        const taunts = [
+            "Nice try! 😜", "Nope, not happening!", "You can't escape love! 💕",
+            "The button is shy!", "Almost got it... NOT! 😂", "Keep trying, I dare you!",
+            "This button has commitment issues!", "Oops, it moved again!",
+            "Just say YES already! 🥺", "I can do this all day!",
+            "The button says: 'Catch me if you can!'", "Plot twist: The No button is broken!",
+            "Error 404: No option not found!", "This is the universe telling you something...",
+            "Even the button knows you want to say YES!", "Resistance is futile! 💖",
+            "The No button went on vacation!", "Sorry, that button is ticklish!",
+            "Whoops! Butterfingers! 🦋", "The button has left the chat!",
+            "You're only delaying the inevitable! 💝", "That button is playing hard to get!",
+            "Nice reflexes... but not nice enough! 😏"
+        ];
+
+        // ============ INITIALIZATION ============
+        const theme = themes[Math.floor(Math.random() * themes.length)];
+        const title = titles[Math.floor(Math.random() * titles.length)];
+        const subtitle = subtitles[Math.floor(Math.random() * subtitles.length)];
+        const successTitle = successTitles[Math.floor(Math.random() * successTitles.length)];
+        const successMessage = successMessages[Math.floor(Math.random() * successMessages.length)];
+
+        // Apply theme
+        document.body.style.background = theme.background;
+        document.body.style.fontFamily = theme.font;
+        
+        const card = document.getElementById('card');
+        card.classList.add(theme.cardStyle);
+        
+        if (theme.cardStyle === 'style-neon' && theme.neonColor) {
+            card.style.borderColor = theme.neonColor;
+            card.style.boxShadow = `0 0 30px ${theme.neonColor}40, 0 0 60px ${theme.neonColor}20`;
+        }
+
+        document.getElementById('themeName').textContent = theme.name;
+        document.getElementById('character').textContent = theme.character;
+        document.getElementById('character').classList.add(theme.characterAnim);
+        
+        document.getElementById('title').textContent = title;
+        document.getElementById('title').style.fontFamily = theme.titleFont;
+        document.getElementById('title').style.color = theme.primaryColor;
+        
+        document.getElementById('subtitle').innerHTML = subtitle;
+        
+        const yesBtn = document.getElementById('yesBtn');
+        yesBtn.style.background = theme.buttonGradient;
+        yesBtn.style.boxShadow = theme.buttonShadow;
+        
+        document.getElementById('successTitle').textContent = successTitle;
+        document.getElementById('successTitle').style.color = theme.primaryColor;
+        document.getElementById('successMessage').innerHTML = successMessage;
+        
+        document.getElementById('tauntMessage').style.color = theme.primaryColor;
+
+        // ============ BUTTON LOGIC ============
         const noBtn = document.getElementById('noBtn');
-        const buttonsContainer = document.getElementById('buttonsContainer');
         const tauntMessage = document.getElementById('tauntMessage');
         const counter = document.getElementById('counter');
-        
         let attempts = 0;
-        const taunts = [
-            "Nice try! 😜",
-            "Nope, not happening!",
-            "You can't escape love! 💕",
-            "The button is shy!",
-            "Almost got it... NOT! 😂",
-            "Keep trying, I dare you!",
-            "This button has commitment issues!",
-            "Oops, it moved again!",
-            "Just say YES already! 🥺",
-            "I can do this all day!",
-            "The button says: 'Catch me if you can!'",
-            "Plot twist: The No button is broken!",
-            "Error 404: No option not found!",
-            "This is the universe telling you something...",
-            "Even the button knows you want to say YES!",
-            "Resistance is futile! 💖"
-        ];
 
         function getRandomPosition() {
             const containerRect = document.body.getBoundingClientRect();
             const btnRect = noBtn.getBoundingClientRect();
-            
             const maxX = containerRect.width - btnRect.width - 20;
             const maxY = containerRect.height - btnRect.height - 20;
-            
-            const randomX = Math.random() * maxX + 10;
-            const randomY = Math.random() * maxY + 10;
-            
-            return { x: randomX, y: randomY };
+            return {
+                x: Math.random() * maxX + 10,
+                y: Math.random() * maxY + 10
+            };
         }
 
         function moveButton() {
@@ -316,22 +629,16 @@
             noBtn.style.left = pos.x + 'px';
             noBtn.style.top = pos.y + 'px';
             
-            // Show taunt message
             const randomTaunt = taunts[Math.floor(Math.random() * taunts.length)];
             tauntMessage.textContent = randomTaunt;
             tauntMessage.classList.add('show');
             
-            setTimeout(() => {
-                tauntMessage.classList.remove('show');
-            }, 1500);
+            setTimeout(() => tauntMessage.classList.remove('show'), 1500);
             
-            // Update counter
             if (attempts >= 3) {
                 counter.textContent = `Escape attempts: ${attempts} — Just give up and say YES! 😄`;
             }
             
-            // Make Yes button grow slightly with each attempt
-            const yesBtn = document.getElementById('yesBtn');
             const currentScale = 1 + (attempts * 0.05);
             if (currentScale <= 1.5) {
                 yesBtn.style.transform = `scale(${currentScale})`;
@@ -339,50 +646,40 @@
         }
 
         noBtn.addEventListener('mouseenter', moveButton);
-        noBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            moveButton();
-        });
-        noBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            moveButton();
-        });
+        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveButton(); });
+        noBtn.addEventListener('click', (e) => { e.preventDefault(); moveButton(); });
+        noBtn.addEventListener('contextmenu', (e) => { e.preventDefault(); moveButton(); });
 
+        // ============ SUCCESS ============
         function sayYes() {
             document.getElementById('mainContent').style.display = 'none';
             document.getElementById('successContainer').classList.add('show');
-            
-            // Trigger confetti
             launchConfetti();
-            
-            // Create more floating hearts
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => createFloatingHeart(), i * 100);
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => createFloatingElement(), i * 80);
             }
         }
 
-        // Floating hearts background
-        function createFloatingHeart() {
-            const heartsContainer = document.getElementById('heartsContainer');
-            const heart = document.createElement('div');
-            heart.className = 'floating-heart';
-            heart.innerHTML = ['❤️', '💕', '💖', '💗', '💓', '💘', '💝', '🌹'][Math.floor(Math.random() * 8)];
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            heart.style.animationDelay = Math.random() * 2 + 's';
-            heartsContainer.appendChild(heart);
-            
-            setTimeout(() => heart.remove(), 8000);
+        // ============ PARTICLES ============
+        function createFloatingElement() {
+            const container = document.getElementById('particlesContainer');
+            const element = document.createElement('div');
+            element.className = 'floating-element';
+            element.textContent = theme.particles[Math.floor(Math.random() * theme.particles.length)];
+            element.style.left = Math.random() * 100 + '%';
+            element.style.fontSize = (Math.random() * 20 + 18) + 'px';
+            element.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            element.style.animationDelay = Math.random() * 2 + 's';
+            container.appendChild(element);
+            setTimeout(() => element.remove(), 8000);
         }
 
-        // Create initial hearts
         for (let i = 0; i < 15; i++) {
-            setTimeout(() => createFloatingHeart(), i * 300);
+            setTimeout(() => createFloatingElement(), i * 300);
         }
-        setInterval(createFloatingHeart, 800);
+        setInterval(createFloatingElement, 800);
 
-        // Confetti effect
+        // ============ CONFETTI ============
         function launchConfetti() {
             const canvas = document.getElementById('confetti');
             const ctx = canvas.getContext('2d');
@@ -390,36 +687,34 @@
             canvas.height = window.innerHeight;
             
             const confettiPieces = [];
-            const colors = ['#ff6b8a', '#ff8e9e', '#ffd1dc', '#ff69b4', '#ff1493', '#ffb6c1', '#ffc0cb'];
+            const colors = ['#ff6b8a', '#ff8e9e', '#ffd1dc', '#ff69b4', '#ff1493', '#ffb6c1', '#a78bfa', '#f472b6', '#fbbf24'];
             
-            for (let i = 0; i < 150; i++) {
+            for (let i = 0; i < 200; i++) {
                 confettiPieces.push({
                     x: canvas.width / 2,
                     y: canvas.height / 2,
                     size: Math.random() * 10 + 5,
                     color: colors[Math.floor(Math.random() * colors.length)],
-                    vx: (Math.random() - 0.5) * 20,
-                    vy: (Math.random() - 0.5) * 20 - 10,
+                    vx: (Math.random() - 0.5) * 25,
+                    vy: (Math.random() - 0.5) * 25 - 10,
                     rotation: Math.random() * 360,
-                    rotationSpeed: (Math.random() - 0.5) * 10
+                    rotationSpeed: (Math.random() - 0.5) * 15
                 });
             }
             
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
                 let stillAnimating = false;
                 
                 confettiPieces.forEach(piece => {
                     piece.x += piece.vx;
                     piece.y += piece.vy;
-                    piece.vy += 0.3; // gravity
+                    piece.vy += 0.3;
                     piece.rotation += piece.rotationSpeed;
                     piece.vx *= 0.99;
                     
                     if (piece.y < canvas.height + 50) {
                         stillAnimating = true;
-                        
                         ctx.save();
                         ctx.translate(piece.x, piece.y);
                         ctx.rotate(piece.rotation * Math.PI / 180);
@@ -429,19 +724,10 @@
                     }
                 });
                 
-                if (stillAnimating) {
-                    requestAnimationFrame(animate);
-                }
+                if (stillAnimating) requestAnimationFrame(animate);
             }
-            
             animate();
         }
-
-        // Prevent right-click on No button
-        noBtn.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            moveButton();
-        });
     </script>
 </body>
 </html>
